@@ -2,6 +2,7 @@ package br.com.alura.services;
 
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.domain.Pet;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -11,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class PetService {
@@ -29,15 +32,15 @@ public class PetService {
          System.out.println("ID ou nome não cadastrado!");
       }
       String responseBody = response.body();
-      JsonArray jsonArray = JsonParser.parseString(responseBody).getAsJsonArray();
+      Pet[] pets = new ObjectMapper().readValue(responseBody, Pet[].class);
+      List<Pet> petsList = Arrays.stream(pets).toList();
       System.out.println("Pets cadastrados:");
-      for (JsonElement element : jsonArray) {
-         JsonObject jsonObject = element.getAsJsonObject();
-         long id = jsonObject.get("id").getAsLong();
-         String tipo = jsonObject.get("tipo").getAsString();
-         String nome = jsonObject.get("nome").getAsString();
-         String raca = jsonObject.get("raca").getAsString();
-         int idade = jsonObject.get("idade").getAsInt();
+      for ( Pet pet : petsList ) {
+         long id = pet.getId();
+         String tipo = pet.getTipo();
+         String nome = pet.getNome();
+         String raca = pet.getRaca();
+         int idade = pet.getIdade();
          System.out.println(id +" - " +tipo +" - " +nome +" - " +raca +" - " +idade +" ano(s)");
       }
    }
@@ -58,7 +61,7 @@ public class PetService {
       String line;
       while ((line = reader.readLine()) != null) {
          String[] campos = line.split(",");
-         String tipo = campos[0];
+         String tipo = campos[0].toUpperCase();
          String nome = campos[1];
          String raca = campos[2];
          int idade = Integer.parseInt(campos[3]);
@@ -71,6 +74,8 @@ public class PetService {
          HttpResponse<String> response = client.dispararRequisicaoPost( uri, pet);
          int statusCode = response.statusCode();
          String responseBody = response.body();
+         String jsonEnviado = new com.google.gson.Gson().toJson(pet);
+         System.out.println("Enviando JSON: " + jsonEnviado);
          if (statusCode == 200) {
             System.out.println("Pet cadastrado com sucesso: " + nome);
          } else if (statusCode == 404) {

@@ -23,6 +23,8 @@ public class ClientHttpConfiguration {
       HttpClient client = HttpClient.newHttpClient();
       HttpRequest request = HttpRequest.newBuilder()
            .uri(URI.create(uri))
+           .header("Content-Type", "application/json")
+           .header("Accept", "application/json")
            .method("POST", HttpRequest.BodyPublishers.ofString(new Gson().toJson(object)))
            .build();
       return client.send(request, HttpResponse.BodyHandlers.ofString());
