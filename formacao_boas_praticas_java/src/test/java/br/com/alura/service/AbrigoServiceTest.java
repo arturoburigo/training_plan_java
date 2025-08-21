@@ -23,7 +23,7 @@ public class AbrigoServiceTest {
 
     @Test
     public void deveVerificarSeExisteAbrigo() throws IOException, InterruptedException {
-        abrigo.setId(Long.valueOf(0L));
+        abrigo.setId(0L);
         String expectedAbrigosCadastrados = "Abrigos cadastrados:";
         String expectedIdENome = "0 - Teste";
 
