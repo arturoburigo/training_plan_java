@@ -39,9 +39,9 @@ public class AdopetConsoleApplication {
                 if (opcaoEscolhida == 1) {
                     abrigoService.listarAbrigo();
                 } else if (opcaoEscolhida == 2) {
-                    petService.listarPets();
+                   abrigoService.cadastrarAbrigo();
                 } else if (opcaoEscolhida == 3) {
-                    abrigoService.cadastrarAbrigo();
+                   petService.listarPets();
                 } else if (opcaoEscolhida == 4) {
                     petService.importarPets();
                 } else if (opcaoEscolhida == 5) {
