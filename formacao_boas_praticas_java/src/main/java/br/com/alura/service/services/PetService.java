@@ -1,12 +1,8 @@
-package br.com.alura.services;
+package br.com.alura.service.services;
 
-import br.com.alura.client.ClientHttpConfiguration;
-import br.com.alura.domain.Pet;
+import br.com.alura.service.client.ClientHttpConfiguration;
+import br.com.alura.service.domain.Pet;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package br.com.alura.domain;
+package br.com.alura.service.domain;
 
 public class Pet {
    public Pet () {}
