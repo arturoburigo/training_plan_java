@@ -110,4 +110,13 @@ public class Adocao {
     public void setJustificativaStatus(String justificativaStatus) {
         this.justificativaStatus = justificativaStatus;
     }
+
+    public void marcarComoReprovado(@NotBlank String justificativa) {
+        this.justificativaStatus = justificativa;
+        this.status = StatusAdocao.REPROVADO;
+    }
+
+    public void marcarComoAprovado() {
+        this.status = StatusAdocao.APROVADO;
+    }
 }
