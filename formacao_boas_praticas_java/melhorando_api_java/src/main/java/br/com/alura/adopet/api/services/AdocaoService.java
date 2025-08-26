@@ -41,12 +41,7 @@ public class AdocaoService {
 
       validacoes.forEach( v -> v.validar(dto));
 
-      Adocao adocao = new Adocao();
-      adocao.setData(LocalDateTime.now());
-      adocao.setStatus(StatusAdocao.AGUARDANDO_AVALIACAO);
-      adocao.setPet(pet);
-      adocao.setTutor(tutor);
-      adocao.setMotivo(dto.motivo());
+      Adocao adocao = new Adocao(tutor, pet, dto.motivo());
       emailService.sendEmail(
            adocao.getPet().getAbrigo().getEmail(),
            "Solicitação de adoção",
