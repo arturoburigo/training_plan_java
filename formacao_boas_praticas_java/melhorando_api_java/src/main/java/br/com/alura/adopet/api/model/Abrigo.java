@@ -29,6 +29,7 @@ public class Abrigo {
     private String email;
 
     @OneToMany(mappedBy = "abrigo", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "abrigo-pets")
     private List<Pet> pets;
 
     public Abrigo(@NotBlank String nome, @NotBlank String email, @NotBlank String telefone) {

@@ -29,6 +29,7 @@ public class Tutor {
     private String email;
 
     @OneToMany(mappedBy = "tutor")
+    @JsonManagedReference(value = "tutor-adocoes")
     private List<Adocao> adocoes;
 
     @Override

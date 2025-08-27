@@ -20,9 +20,11 @@ public class Adocao {
     private LocalDateTime data;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "tutor-adocoes")
     private Tutor tutor;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonBackReference(value = "pet-adocao")
     private Pet pet;
 
     private String motivo;

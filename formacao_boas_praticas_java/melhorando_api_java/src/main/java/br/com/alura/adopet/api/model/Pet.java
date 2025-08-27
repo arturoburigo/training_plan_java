@@ -1,6 +1,8 @@
 package br.com.alura.adopet.api.model;
 
+import br.com.alura.adopet.api.dto.CadastrarPetDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,12 +40,27 @@ public class Pet {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "abrigo_id")
+    @JsonBackReference(value = "abrigo-pets")
     private Abrigo abrigo;
 
     @OneToOne(mappedBy = "pet", fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "pet-adocao")
     private Adocao adocao;
 
-    @Override
+   public Pet(Abrigo abrigo, CadastrarPetDTO dto) {
+      this.abrigo = abrigo;
+      this.adotado = false;
+      this.cor = dto.cor();
+      this.idade = dto.idade();
+      this.nome = dto.nome();
+      this.raca = dto.raca();
+      this.tipo = dto.tipo();
+      this.peso = dto.peso();
+   }
+
+   public Pet() {    }
+
+   @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
