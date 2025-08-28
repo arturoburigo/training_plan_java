@@ -24,7 +24,6 @@ public class AbrigoService {
     public void cadastrarAbrigo(CadastrarAbrigoDTO dto){
        validacoes.forEach( v -> v.validar(dto));
        Abrigo abrigo = new Abrigo(dto.nome(), dto.email(), dto.telefone());
-       repository.save(abrigo);
     }
 
     public void CadastrarPet(CadastrarPetDTO dto, String idOuNome) {

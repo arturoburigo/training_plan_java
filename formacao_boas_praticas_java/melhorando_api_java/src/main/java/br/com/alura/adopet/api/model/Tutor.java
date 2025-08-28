@@ -32,7 +32,15 @@ public class Tutor {
     @JsonManagedReference(value = "tutor-adocoes")
     private List<Adocao> adocoes;
 
-    @Override
+   public Tutor(@NotBlank String nome, @NotBlank String email, @NotBlank String telefone) {
+      this.nome = nome;
+      this.email = email;
+      this.telefone = telefone;
+   }
+
+   public Tutor() {    }
+
+   @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
