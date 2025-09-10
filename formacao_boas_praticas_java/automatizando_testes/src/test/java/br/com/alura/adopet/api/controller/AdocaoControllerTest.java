@@ -42,7 +42,7 @@ class AdocaoControllerTest {
 
         var response = mvc.perform(
                 post("/adocoes")
-                        .content(json)git
+                        .content(json)
                         .contentType(MediaType.APPLICATION_JSON)
         ).andReturn().getResponse();
 
