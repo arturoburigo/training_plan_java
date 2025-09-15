@@ -6,6 +6,7 @@ import br.com.alura.codechella.infra.persistence.UserEntity;
 import br.com.alura.codechella.infra.persistence.UserRepositoryPersistence;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserRepositoryJpa implements UserRepository {
     private final UserRepositoryPersistence userRepository;
@@ -25,7 +26,6 @@ public class UserRepositoryJpa implements UserRepository {
 
     @Override
     public List<User> listAllUsers() {
-       //
-        return null;
+        return userRepository.findAll().stream().map(mapper::toDomain).collect(Collectors.toList());
     }
 }

@@ -5,7 +5,7 @@ import br.com.alura.codechella.infra.persistence.UserEntity;
 
 public class UserEntityMapper {
     public UserEntity toEntity(User user){
-        return new UserEntity(user.getName(), user.getCpf(), user.getBirthDate(), user.getEmail());
+        return new UserEntity(user.getCpf(), user.getName(), user.getBirthDate(), user.getEmail());
     }
 
     public User toDomain(UserEntity userEntity){
