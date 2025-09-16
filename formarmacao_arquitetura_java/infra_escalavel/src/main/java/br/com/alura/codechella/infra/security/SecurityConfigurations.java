@@ -35,6 +35,7 @@ public class SecurityConfigurations {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers(HttpMethod.POST, "/auth").permitAll();
+                    req.requestMatchers(HttpMethod.POST, "/usuarios").permitAll();
                     req.requestMatchers(HttpMethod.GET, "/eventos").permitAll();
                     req.requestMatchers(HttpMethod.GET, "/eventos/{id:[\\d+]}").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/eventos").hasRole("ADMIN");
